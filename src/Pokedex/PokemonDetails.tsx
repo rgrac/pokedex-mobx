@@ -6,7 +6,7 @@ const PokemonDetails = () => {
   const { data, isLoading } = useQuery(
     ['pokemon-detail', name],
     async () => {
-      return await fetch('https://pokeapi.co/api.v2/pokemon/' + name).then(
+      return await fetch('https://pokeapi.co/api/v2/pokemon/' + name).then(
         (res) => res.json()
       );
     },
