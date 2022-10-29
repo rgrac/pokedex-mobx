@@ -1,15 +1,12 @@
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router';
+import { detailsFetcher } from '../Api';
 
 const PokemonDetails = () => {
   const { name } = useParams<{ name: string }>();
   const { data, isLoading } = useQuery(
     ['pokemon-detail', name],
-    async () => {
-      return await fetch('https://pokeapi.co/api/v2/pokemon/' + name).then(
-        (res) => res.json()
-      );
-    },
+    detailsFetcher(name),
     {
       staleTime: 600_00,
     }

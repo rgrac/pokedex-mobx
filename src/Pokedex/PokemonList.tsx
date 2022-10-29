@@ -1,18 +1,11 @@
 import { useQuery } from 'react-query';
+import { listFetcher } from '../Api';
 import PokemonListItemWrapper from './PokemonListItem';
 
 const PokemonList = () => {
-  const { data, isLoading } = useQuery(
-    'pokemon-list',
-    async () => {
-      return await fetch(
-        'https://pokeapi.co/api/v2/pokemon?limit=100&offset=0'
-      ).then((res) => res.json());
-    },
-    {
-      staleTime: 600_000,
-    }
-  );
+  const { data, isLoading } = useQuery('pokemon-list', listFetcher(), {
+    staleTime: 600_000,
+  });
 
   return (
     <>

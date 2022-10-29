@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+import { detailsFetcher } from '../../Api';
 import PokemonListItem from './PokemonListItem';
 import SkeletonListItem from './SkeletonListItem';
 
@@ -11,9 +12,7 @@ const PokemonListItemWrapper = ({
 }) => {
   const { data, isLoading } = useQuery(
     ['pokemon-detail', name],
-    async () => {
-      return await fetch(url).then((res) => res.json());
-    },
+    detailsFetcher(name),
     { staleTime: 600_000 }
   );
   return (
